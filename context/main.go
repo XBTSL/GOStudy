@@ -12,14 +12,12 @@ var syncG sync.WaitGroup
 
 func main() {
 
-	context.WithValue
 	ctx := context.Background()
 	ctx = context.WithValue(ctx, "key", "value")
 	syncG.Add(1)
 	go a(ctx)
 	syncG.Wait()
 
-	context.withCancel
 	context.Canceled = errors.New("Mq 故障......")
 	ctx, cancle := context.WithCancel(context.Background())
 	for i := 0; i < 5; i++ {
@@ -43,8 +41,6 @@ func main() {
 
 	// 暂时别让程序停止
 	time.Sleep(time.Second * 5)
-
-	context.WithTimeout
 
 }
 func a(ctx context.Context) {
