@@ -11,13 +11,10 @@ import (
 var syncG sync.WaitGroup
 
 func main() {
-
 	ctx := context.Background()
 	ctx = context.WithValue(ctx, "key", "value")
 	syncG.Add(1)
 	go a(ctx)
-	syncG.Wait()
-
 	context.Canceled = errors.New("Mq 故障......")
 	ctx, cancle := context.WithCancel(context.Background())
 	for i := 0; i < 5; i++ {
@@ -34,13 +31,14 @@ func main() {
 		}(i)
 	}
 	go func() {
-		time.Sleep(time.Second * 2)
+		time.Sleep(time.Second * 1)
 		// 故障，通知消费者不在消费
 		cancle()
 	}()
 
 	// 暂时别让程序停止
-	time.Sleep(time.Second * 5)
+	time.Sleep(time.Second * 2)
+	syncG.Wait()
 
 }
 func a(ctx context.Context) {
