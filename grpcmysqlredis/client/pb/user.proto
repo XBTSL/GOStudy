@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+option go_package = ".;users";
+
+message userEntry{
+  int32 id = 1;
+  string name = 2;
+  string password = 3;
+  string email = 4;
+}
+
+message userResp{
+  string name = 1;
+  string words = 2;//打招呼的话
+}
+
+service userIdentify{
+  rpc identifyUser(userEntry) returns (userResp){}
+}
