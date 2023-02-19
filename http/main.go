@@ -70,21 +70,21 @@ func del() {
 	fmt.Printf("%s", content)
 }
 
-//type student struct {
-//}
-//
-//func (a *student) ServeHTTP(rp http.ResponseWriter, rq *http.Request) {
-//	fmt.Fprintln(rp, "hello tomjack")
-//}
-//
-//func con(rp http.ResponseWriter, rq *http.Request) {
-//	fmt.Println(rp, "congratulate!!!\n")
-//}
+type student struct {
+}
+
+func (a *student) ServeHTTP(rp http.ResponseWriter, rq *http.Request) {
+	fmt.Fprintln(rp, "hello tomjack")
+}
+
+func con(rp http.ResponseWriter, rq *http.Request) {
+	fmt.Println(rp, "congratulate!!!\n")
+}
 
 func main() {
-	//temp := student{}
-	//http.Handle("/", &temp)
-	//http.HandleFunc("master", con)
-	//http.ListenAndServe(":8080", nil)
+	temp := student{}
+	http.Handle("/", &temp)
+	http.HandleFunc("master", con)
+	http.ListenAndServe(":8080", http.FileServer(http.Dir("G:\\sublime 笔记")))
 	del()
 }
